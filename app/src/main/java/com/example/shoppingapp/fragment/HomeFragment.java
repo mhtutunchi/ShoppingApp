@@ -21,7 +21,6 @@ public class HomeFragment extends Fragment {
 
     public HomeFragment() {
     }
-
     View view;
     //Slider
     List<Banner> listBanner = new ArrayList<>();
@@ -36,12 +35,12 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
         viewPager = view.findViewById(R.id.viewpager);
         tabs = view.findViewById(R.id.tabs);
-        return view;
-    }
-    public static void test(){
-        int x;
+        sliderAdapter = new SliderAdapter(getContext() , listBanner);
+        viewPager.setAdapter(sliderAdapter);
+        tabs.setupWithViewPager(viewPager , true);
 
-        
+
+        return view;
     }
 }
  
