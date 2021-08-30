@@ -3,20 +3,35 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground"
     android:padding="8dp"
+    android:layoutDirection="rtl"
     tools:context=".fragment.HomeFragment">
 
 
     <androidx.viewpager.widget.ViewPager
+        android:layout_margin="8dp"
         android:layout_width="match_parent"
-        android:layout_height="140dp"
-        android:id="@+id/viewpager"
+        android:layout_height="120dp"
+        android:id="@+id/viewPager"
          />
      <com.google.android.material.tabs.TabLayout
+         app:tabIndicatorHeight="0dp"
+         app:tabGravity="center"
+         app:tabBackground="@drawable/bg_tabs"
          android:layout_width="wrap_content"
          android:layout_height="wrap_content"
          android:id="@+id/tabs"
-         android:layout_below="@id/viewpager"
+         android:layout_below="@id/viewPager"
          android:layout_centerHorizontal="true"/>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tabs"
+        android:id="@+id/recyclerView_Category"
+
+        />
 </RelativeLayout>

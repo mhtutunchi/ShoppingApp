@@ -13,7 +13,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
-        android:background="#19B81F"
+        android:background="@color/colorPrimary"
         android:padding="8dp">
 
         <ImageView
@@ -53,7 +53,7 @@
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:layout_alignParentBottom="true"
-        android:background="#19B81F"
+        android:background="@color/colorPrimary"
         app:itemIconTint="@drawable/bg_nav_selected"
         app:itemTextColor="@drawable/bg_nav_selected"
         app:menu="@menu/home_menu" />
