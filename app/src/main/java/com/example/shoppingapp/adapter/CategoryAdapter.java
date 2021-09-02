@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.model.Category;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -28,14 +29,15 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
     @NonNull
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-
         View view = LayoutInflater.from(context).inflate(R.layout.item_category, parent, false);
         return new MyViewHolder(view);
+
     }
 
     @Override
     public void onBindViewHolder(@NonNull CategoryAdapter.MyViewHolder holder, int position) {
-
+        holder.title.setText(data.get(position).getTitle());
+        Picasso.get().load(data.get(position).getLink_img()).into(holder.img_category);
     }
 
     @Override
@@ -45,16 +47,17 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
 
+        TextView title;
         ImageView img_category;
-        TextView name_category;
-
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img_category = itemView.findViewById(R.id.img);
-            name_category = itemView.findViewById(R.id.title);
+            title = itemView.findViewById(R.id.title);
+            img_category = itemView.findViewById(R.id.img_category);
+
 
         }
+
     }
 }

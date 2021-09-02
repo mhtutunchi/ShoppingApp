@@ -2,7 +2,7 @@ package com.example.shoppingapp.model;
 
 public class Category {
 
-    private String id , title  , link_img;
+    private String id, title, link_img;
 
     public Category() {
     }

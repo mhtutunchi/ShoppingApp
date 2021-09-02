@@ -3,6 +3,8 @@ package com.example.shoppingapp.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.util.Log;
@@ -19,8 +21,10 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.shoppingapp.Global.Link;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.adapter.CategoryAdapter;
 import com.example.shoppingapp.adapter.SliderAdapter;
 import com.example.shoppingapp.model.Banner;
+import com.example.shoppingapp.model.Category;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
@@ -35,12 +39,18 @@ public class HomeFragment extends Fragment {
     }
 
     View view;
+    RequestQueue requestQueue;
+
     //Slider
     List<Banner> listBanner = new ArrayList<>();
     SliderAdapter sliderAdapter;
     ViewPager viewPager;
     TabLayout tabs;
-    RequestQueue requestQueue;
+    //Category
+    List<Category> listCategory = new ArrayList<>();
+    CategoryAdapter categoryAdapter;
+    RecyclerView recyclerviewCategory;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -49,6 +59,56 @@ public class HomeFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_home, container, false);
 
         requestQueue = Volley.newRequestQueue(getContext());
+
+        getBannerSlider();
+        getCategory();
+
+        return view;
+    }
+
+    private void getCategory() {
+
+        recyclerviewCategory = view.findViewById(R.id.recyclerView_Category);
+        recyclerviewCategory.setHasFixedSize(true);
+        recyclerviewCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        categoryAdapter = new CategoryAdapter(getContext(), listCategory);
+        recyclerviewCategory.setAdapter(categoryAdapter);
+
+        String url = Link.LINK_CATEGORY_BY_LIMIT;
+
+        Response.Listener<JSONArray> listener = new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                Gson gson = new Gson();
+                Category[] categories = gson.fromJson(response.toString(), Category[].class);
+
+                for (int i = 0; i < categories.length; i++) {
+
+                    listCategory.add(categories[i]);
+                    categoryAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                Log.d("Error : ", error.getMessage() + "");
+
+            }
+        };
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        requestQueue.add(request);
+
+    }
+
+    private void getBannerSlider() {
 
         viewPager = view.findViewById(R.id.viewPager);
         tabs = view.findViewById(R.id.tabs);
@@ -120,7 +180,45 @@ public class HomeFragment extends Fragment {
         JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
         requestQueue.add(request);
 
-        return view;
+        final boolean running_thread = true;
+
+        Thread thread = new Thread(){
+
+            @Override
+            public void run() {
+
+
+                while (running_thread){
+
+                    try {
+                        Thread.sleep(4000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                        Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
+                    }
+
+                    if (getActivity()==null)
+                        return;
+
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (viewPager.getCurrentItem() < listBanner.size() -1){
+                                viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+                            }else {
+                                viewPager.setCurrentItem(0);
+                            }
+
+                        }
+                    });
+
+                }
+
+            }
+        };
+        thread.start();
+
     }
 }
  

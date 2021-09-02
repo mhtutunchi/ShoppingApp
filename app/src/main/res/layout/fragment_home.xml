@@ -1,37 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/colorBackground"
-    android:padding="8dp"
     android:layoutDirection="rtl"
     tools:context=".fragment.HomeFragment">
 
 
     <androidx.viewpager.widget.ViewPager
-        android:layout_margin="8dp"
+        android:id="@+id/viewPager"
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:id="@+id/viewPager"
-         />
-     <com.google.android.material.tabs.TabLayout
-         app:tabIndicatorHeight="0dp"
-         app:tabGravity="center"
-         app:tabBackground="@drawable/bg_tabs"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:id="@+id/tabs"
-         android:layout_below="@id/viewPager"
-         android:layout_centerHorizontal="true"/>
+        android:layout_margin="8dp" />
 
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tabs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewPager"
+        android:layout_centerHorizontal="true"
+        android:background="@color/colorAccent"
+        app:tabBackground="@drawable/bg_tabs"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp" />
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_margin="8dp"
+        android:id="@+id/recyclerView_Category"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tabs" />
+
+    <TextView
+        android:layout_margin="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textColor="@color/textColor"
+        android:text="زمان باقی مانده تا پیشنهاد شگفت انگیز : "
+        android:layout_below="@id/recyclerView_Category"
+        android:layout_marginTop="8dp"
+        android:id="@+id/txt_amazing" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/tabs"
-        android:id="@+id/recyclerView_Category"
+        android:id="@+id/recyclerView_amazing_offer"
+        android:layout_below="@id/txt_amazing"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorPrimary"
+        >
 
-        />
+
+    </androidx.recyclerview.widget.RecyclerView>
+
 </RelativeLayout>
