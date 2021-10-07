@@ -21,10 +21,14 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.shoppingapp.Global.Link;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.adapter.AmazingProductAdapter;
 import com.example.shoppingapp.adapter.CategoryAdapter;
 import com.example.shoppingapp.adapter.SliderAdapter;
+import com.example.shoppingapp.model.Amazing;
+import com.example.shoppingapp.model.AmazingOfferProduct;
 import com.example.shoppingapp.model.Banner;
 import com.example.shoppingapp.model.Category;
+import com.example.shoppingapp.model.FirstAmazing;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
@@ -46,10 +50,16 @@ public class HomeFragment extends Fragment {
     SliderAdapter sliderAdapter;
     ViewPager viewPager;
     TabLayout tabs;
+
     //Category
     List<Category> listCategory = new ArrayList<>();
     CategoryAdapter categoryAdapter;
     RecyclerView recyclerviewCategory;
+
+    //Amazing Offer
+    List<Amazing> listAmazing = new ArrayList<>();
+    AmazingProductAdapter amazingProductAdapter;
+    RecyclerView recyclerView_amazing;
 
 
     @Override
@@ -62,9 +72,61 @@ public class HomeFragment extends Fragment {
 
         getBannerSlider();
         getCategory();
+        getAmazing();
 
         return view;
     }
+
+    private void getAmazing() {
+
+
+        recyclerView_amazing = view.findViewById(R.id.recyclerView_amazing_offer);
+        recyclerView_amazing.setHasFixedSize(true);
+        recyclerView_amazing.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+
+        FirstAmazing firstAmazing = new FirstAmazing("پیشنهاد های شگفت انگیز این هفته را از دست ندهید"
+                , "https://www.pngkit.com/png/full/28-283565_discount-tag-png.png");
+
+        listAmazing.add(new Amazing(1, firstAmazing));
+
+        amazingProductAdapter = new AmazingProductAdapter(getContext(), listAmazing);
+        recyclerView_amazing.setAdapter(amazingProductAdapter);
+
+        String url = Link.LINK_AMAZING_OFFER;
+
+        Response.Listener<JSONArray> listener = new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                Gson gson = new Gson();
+                AmazingOfferProduct[] amazingOfferProducts = gson.fromJson(response.toString(), AmazingOfferProduct[].class);
+
+                for (int i = 0; i < amazingOfferProducts.length; i++) {
+
+                    listAmazing.add(new Amazing(0, amazingOfferProducts[i]));
+                    amazingProductAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                Log.d("Error : ", error.getMessage() + "");
+
+            }
+        };
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        requestQueue.add(request);
+
+
+    }
+
 
     private void getCategory() {
 
@@ -182,13 +244,13 @@ public class HomeFragment extends Fragment {
 
         final boolean running_thread = true;
 
-        Thread thread = new Thread(){
+        Thread thread = new Thread() {
 
             @Override
             public void run() {
 
 
-                while (running_thread){
+                while (running_thread) {
 
                     try {
                         Thread.sleep(4000);
@@ -197,16 +259,16 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
                     }
 
-                    if (getActivity()==null)
+                    if (getActivity() == null)
                         return;
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 
-                            if (viewPager.getCurrentItem() < listBanner.size() -1){
-                                viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
-                            }else {
+                            if (viewPager.getCurrentItem() < listBanner.size() - 1) {
+                                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
+                            } else {
                                 viewPager.setCurrentItem(0);
                             }
 
