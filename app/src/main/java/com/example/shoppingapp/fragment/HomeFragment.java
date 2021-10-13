@@ -3,6 +3,7 @@ package com.example.shoppingapp.fragment;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
@@ -22,13 +23,16 @@ import com.android.volley.toolbox.Volley;
 import com.example.shoppingapp.Global.Link;
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.adapter.AmazingProductAdapter;
+import com.example.shoppingapp.adapter.BannerSecondAdapter;
 import com.example.shoppingapp.adapter.CategoryAdapter;
+import com.example.shoppingapp.adapter.NewProductAdapter;
 import com.example.shoppingapp.adapter.SliderAdapter;
 import com.example.shoppingapp.model.Amazing;
 import com.example.shoppingapp.model.AmazingOfferProduct;
 import com.example.shoppingapp.model.Banner;
 import com.example.shoppingapp.model.Category;
 import com.example.shoppingapp.model.FirstAmazing;
+import com.example.shoppingapp.model.Product;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
 
@@ -61,6 +65,15 @@ public class HomeFragment extends Fragment {
     AmazingProductAdapter amazingProductAdapter;
     RecyclerView recyclerView_amazing;
 
+    //Second Banner
+    List<Banner> listBanner_second = new ArrayList<>();
+    BannerSecondAdapter bannerSecondAdapter;
+    RecyclerView recyclerViewSecondBanner;
+    //New Product
+    List<Product> listNewProduct = new ArrayList<>();
+    NewProductAdapter newProductAdapter;
+    RecyclerView recyclerViewNewProduct;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -73,12 +86,105 @@ public class HomeFragment extends Fragment {
         getBannerSlider();
         getCategory();
         getAmazing();
-
+        getSecondBanner();
+        getBrand();
+        getNewProduct();
+        getNewWatch();
+        getTimer();
         return view;
     }
 
-    private void getAmazing() {
 
+
+    private void getTimer() {
+    }
+    private void getNewWatch() {
+    }
+    private void getNewProduct() {
+
+        recyclerViewNewProduct = view.findViewById(R.id.recyclerView_new_product);
+        recyclerViewNewProduct.setHasFixedSize(true);
+        recyclerViewNewProduct.setLayoutManager(new GridLayoutManager(getContext() , 3));
+        newProductAdapter = new NewProductAdapter(getContext() , listNewProduct);
+        recyclerViewNewProduct.setAdapter(newProductAdapter);
+
+        String url = Link.LINK_NEW_PRODUCT;
+
+        Response.Listener<JSONArray> listener = new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                Gson gson = new Gson();
+                Product[] products = gson.fromJson(response.toString() ,  Product[].class);
+
+                for (int i = 0 ; i<products.length ; i++){
+
+                    listNewProduct.add(products[i]);
+                    newProductAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Log.d("Error : " , error.getMessage()+"");
+
+            }
+        };
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET , url ,null ,listener , errorListener );
+        requestQueue.add(request);
+    }
+    private void getBrand() {
+    }
+
+    private void getSecondBanner() {
+        recyclerViewSecondBanner = view.findViewById(R.id.recyclerView_banner_second);
+        recyclerViewSecondBanner.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerViewSecondBanner.setHasFixedSize(true);
+        bannerSecondAdapter = new BannerSecondAdapter(getContext(), listBanner_second);
+        recyclerViewSecondBanner.setAdapter(bannerSecondAdapter);
+
+        String url = Link.LINK_SECOND_BANNER;
+
+        Response.Listener<JSONArray> listener = new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                Gson gson = new Gson();
+                Banner[] banners = gson.fromJson(response.toString(), Banner[].class);
+
+                for (int i = 0; i < banners.length; i++) {
+
+                    listBanner_second.add(banners[i]);
+                    bannerSecondAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                Log.d("Error : ", error.getMessage() + "");
+
+            }
+        };
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        requestQueue.add(request);
+
+    }
+
+    private void getAmazing() {
 
         recyclerView_amazing = view.findViewById(R.id.recyclerView_amazing_offer);
         recyclerView_amazing.setHasFixedSize(true);

@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_home.xml" value="0.268" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_banner_second.xml" value="0.23731884057971014" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_first_amazing_offer.xml" value="0.12386018237082067" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_first_watch.xml" value="0.12386018237082067" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_new_product.xml" value="0.12386018237082067" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_new_watch.xml" value="0.21784420289855072" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
