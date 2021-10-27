@@ -24,12 +24,14 @@ import com.example.shoppingapp.Global.Link;
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.adapter.AmazingProductAdapter;
 import com.example.shoppingapp.adapter.BannerSecondAdapter;
+import com.example.shoppingapp.adapter.BrandAdapter;
 import com.example.shoppingapp.adapter.CategoryAdapter;
 import com.example.shoppingapp.adapter.NewProductAdapter;
 import com.example.shoppingapp.adapter.SliderAdapter;
 import com.example.shoppingapp.model.Amazing;
 import com.example.shoppingapp.model.AmazingOfferProduct;
 import com.example.shoppingapp.model.Banner;
+import com.example.shoppingapp.model.Brand;
 import com.example.shoppingapp.model.Category;
 import com.example.shoppingapp.model.FirstAmazing;
 import com.example.shoppingapp.model.Product;
@@ -69,10 +71,16 @@ public class HomeFragment extends Fragment {
     List<Banner> listBanner_second = new ArrayList<>();
     BannerSecondAdapter bannerSecondAdapter;
     RecyclerView recyclerViewSecondBanner;
+
     //New Product
     List<Product> listNewProduct = new ArrayList<>();
     NewProductAdapter newProductAdapter;
     RecyclerView recyclerViewNewProduct;
+
+    //Brand
+    List<Brand> listBrand = new ArrayList<>();
+    BrandAdapter brandAdapter;
+    RecyclerView recyclerView_brand;
 
 
     @Override
@@ -95,17 +103,61 @@ public class HomeFragment extends Fragment {
     }
 
 
-
     private void getTimer() {
     }
+
     private void getNewWatch() {
     }
+
+    private void getBrand() {
+
+        recyclerView_brand = view.findViewById(R.id.recyclerView_brand);
+        recyclerView_brand.setHasFixedSize(true);
+        recyclerView_brand.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        brandAdapter = new BrandAdapter(getContext(), listBrand);
+        recyclerView_brand.setAdapter(brandAdapter);
+
+        String url = Link.LINK_BRAND;
+
+        Response.Listener<JSONArray> listener = new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                Gson gson = new Gson();
+                Brand[] brands = gson.fromJson(response.toString(), Brand[].class);
+
+                for (int i = 0; i < brands.length; i++) {
+
+                    listBrand.add(brands[i]);
+                    brandAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                Log.d("Error : ", error.getMessage() + "");
+
+            }
+        };
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        requestQueue.add(request);
+
+
+    }
+
     private void getNewProduct() {
 
         recyclerViewNewProduct = view.findViewById(R.id.recyclerView_new_product);
         recyclerViewNewProduct.setHasFixedSize(true);
-        recyclerViewNewProduct.setLayoutManager(new GridLayoutManager(getContext() , 3));
-        newProductAdapter = new NewProductAdapter(getContext() , listNewProduct);
+        recyclerViewNewProduct.setLayoutManager(new GridLayoutManager(getContext(), 3));
+        newProductAdapter = new NewProductAdapter(getContext(), listNewProduct);
         recyclerViewNewProduct.setAdapter(newProductAdapter);
 
         String url = Link.LINK_NEW_PRODUCT;
@@ -115,9 +167,9 @@ public class HomeFragment extends Fragment {
             public void onResponse(JSONArray response) {
 
                 Gson gson = new Gson();
-                Product[] products = gson.fromJson(response.toString() ,  Product[].class);
+                Product[] products = gson.fromJson(response.toString(), Product[].class);
 
-                for (int i = 0 ; i<products.length ; i++){
+                for (int i = 0; i < products.length; i++) {
 
                     listNewProduct.add(products[i]);
                     newProductAdapter.notifyDataSetChanged();
@@ -131,16 +183,14 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
-                Log.d("Error : " , error.getMessage()+"");
+                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
+                Log.d("Error : ", error.getMessage() + "");
 
             }
         };
 
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET , url ,null ,listener , errorListener );
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
         requestQueue.add(request);
-    }
-    private void getBrand() {
     }
 
     private void getSecondBanner() {
