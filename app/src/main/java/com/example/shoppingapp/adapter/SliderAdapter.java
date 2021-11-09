@@ -14,8 +14,8 @@ import com.example.shoppingapp.model.Banner;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
-
 public class SliderAdapter extends PagerAdapter {
+
     Context context;
     List<Banner> data;
 
@@ -37,7 +37,6 @@ public class SliderAdapter extends PagerAdapter {
         container.addView(view);
         return view;
     }
-
 
     @Override
     public int getCount() {

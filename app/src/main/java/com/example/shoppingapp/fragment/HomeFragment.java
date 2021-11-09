@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -82,12 +83,14 @@ public class HomeFragment extends Fragment {
     BrandAdapter brandAdapter;
     RecyclerView recyclerView_brand;
 
+    TextView txt_new_product_more;
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_home, container, false);
+        view =  inflater.inflate(R.layout.fragment_home, container, false);
 
         requestQueue = Volley.newRequestQueue(getContext());
 
@@ -99,6 +102,7 @@ public class HomeFragment extends Fragment {
         getNewProduct();
         getNewWatch();
         getTimer();
+
         return view;
     }
 
@@ -113,8 +117,8 @@ public class HomeFragment extends Fragment {
 
         recyclerView_brand = view.findViewById(R.id.recyclerView_brand);
         recyclerView_brand.setHasFixedSize(true);
-        recyclerView_brand.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        brandAdapter = new BrandAdapter(getContext(), listBrand);
+        recyclerView_brand.setLayoutManager(new GridLayoutManager(getContext() , 3));
+        brandAdapter = new BrandAdapter(getContext() , listBrand);
         recyclerView_brand.setAdapter(brandAdapter);
 
         String url = Link.LINK_BRAND;
@@ -124,9 +128,9 @@ public class HomeFragment extends Fragment {
             public void onResponse(JSONArray response) {
 
                 Gson gson = new Gson();
-                Brand[] brands = gson.fromJson(response.toString(), Brand[].class);
+                Brand[] brands = gson.fromJson(response.toString() ,  Brand[].class);
 
-                for (int i = 0; i < brands.length; i++) {
+                for (int i = 0 ; i<brands.length ; i++){
 
                     listBrand.add(brands[i]);
                     brandAdapter.notifyDataSetChanged();
@@ -140,24 +144,25 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                Log.d("Error : ", error.getMessage() + "");
+                Toast.makeText(getContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Log.d("Error : " , error.getMessage()+"");
 
             }
         };
 
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET , url ,null ,listener , errorListener );
         requestQueue.add(request);
 
 
     }
 
+
     private void getNewProduct() {
 
         recyclerViewNewProduct = view.findViewById(R.id.recyclerView_new_product);
         recyclerViewNewProduct.setHasFixedSize(true);
-        recyclerViewNewProduct.setLayoutManager(new GridLayoutManager(getContext(), 3));
-        newProductAdapter = new NewProductAdapter(getContext(), listNewProduct);
+        recyclerViewNewProduct.setLayoutManager(new GridLayoutManager(getContext() , 3));
+        newProductAdapter = new NewProductAdapter(getContext() , listNewProduct);
         recyclerViewNewProduct.setAdapter(newProductAdapter);
 
         String url = Link.LINK_NEW_PRODUCT;
@@ -167,9 +172,9 @@ public class HomeFragment extends Fragment {
             public void onResponse(JSONArray response) {
 
                 Gson gson = new Gson();
-                Product[] products = gson.fromJson(response.toString(), Product[].class);
+                Product[] products = gson.fromJson(response.toString() ,  Product[].class);
 
-                for (int i = 0; i < products.length; i++) {
+                for (int i = 0 ; i<products.length ; i++){
 
                     listNewProduct.add(products[i]);
                     newProductAdapter.notifyDataSetChanged();
@@ -183,21 +188,22 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                Log.d("Error : ", error.getMessage() + "");
+                Toast.makeText(getContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Log.d("Error : " , error.getMessage()+"");
 
             }
         };
 
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET , url ,null ,listener , errorListener );
         requestQueue.add(request);
+
     }
 
     private void getSecondBanner() {
         recyclerViewSecondBanner = view.findViewById(R.id.recyclerView_banner_second);
-        recyclerViewSecondBanner.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        recyclerViewSecondBanner.setLayoutManager(new GridLayoutManager(getContext() , 2));
         recyclerViewSecondBanner.setHasFixedSize(true);
-        bannerSecondAdapter = new BannerSecondAdapter(getContext(), listBanner_second);
+        bannerSecondAdapter = new BannerSecondAdapter(getContext() , listBanner_second);
         recyclerViewSecondBanner.setAdapter(bannerSecondAdapter);
 
         String url = Link.LINK_SECOND_BANNER;
@@ -207,9 +213,9 @@ public class HomeFragment extends Fragment {
             public void onResponse(JSONArray response) {
 
                 Gson gson = new Gson();
-                Banner[] banners = gson.fromJson(response.toString(), Banner[].class);
+                Banner[] banners = gson.fromJson(response.toString() ,  Banner[].class);
 
-                for (int i = 0; i < banners.length; i++) {
+                for (int i = 0 ; i<banners.length ; i++){
 
                     listBanner_second.add(banners[i]);
                     bannerSecondAdapter.notifyDataSetChanged();
@@ -223,29 +229,32 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                Log.d("Error : ", error.getMessage() + "");
+                Toast.makeText(getContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Log.d("Error : " , error.getMessage()+"");
 
             }
         };
 
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET , url ,null ,listener , errorListener );
         requestQueue.add(request);
+
+
 
     }
 
     private void getAmazing() {
 
+
         recyclerView_amazing = view.findViewById(R.id.recyclerView_amazing_offer);
         recyclerView_amazing.setHasFixedSize(true);
-        recyclerView_amazing.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerView_amazing.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
 
         FirstAmazing firstAmazing = new FirstAmazing("پیشنهاد های شگفت انگیز این هفته را از دست ندهید"
-                , "https://www.pngkit.com/png/full/28-283565_discount-tag-png.png");
+                ,"https://www.pngkit.com/png/full/28-283565_discount-tag-png.png");
 
-        listAmazing.add(new Amazing(1, firstAmazing));
+        listAmazing.add(new Amazing(1 , firstAmazing));
 
-        amazingProductAdapter = new AmazingProductAdapter(getContext(), listAmazing);
+        amazingProductAdapter = new AmazingProductAdapter(getContext() , listAmazing);
         recyclerView_amazing.setAdapter(amazingProductAdapter);
 
         String url = Link.LINK_AMAZING_OFFER;
@@ -255,11 +264,11 @@ public class HomeFragment extends Fragment {
             public void onResponse(JSONArray response) {
 
                 Gson gson = new Gson();
-                AmazingOfferProduct[] amazingOfferProducts = gson.fromJson(response.toString(), AmazingOfferProduct[].class);
+                AmazingOfferProduct[] amazingOfferProducts = gson.fromJson(response.toString() ,  AmazingOfferProduct[].class);
 
-                for (int i = 0; i < amazingOfferProducts.length; i++) {
+                for (int i = 0 ; i<amazingOfferProducts.length ; i++){
 
-                    listAmazing.add(new Amazing(0, amazingOfferProducts[i]));
+                    listAmazing.add(new Amazing(0 , amazingOfferProducts[i]));
                     amazingProductAdapter.notifyDataSetChanged();
 
                 }
@@ -271,25 +280,25 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                Log.d("Error : ", error.getMessage() + "");
+                Toast.makeText(getContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Log.d("Error : " , error.getMessage()+"");
 
             }
         };
 
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET , url ,null ,listener , errorListener );
         requestQueue.add(request);
 
 
-    }
 
+    }
 
     private void getCategory() {
 
         recyclerviewCategory = view.findViewById(R.id.recyclerView_Category);
         recyclerviewCategory.setHasFixedSize(true);
-        recyclerviewCategory.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        categoryAdapter = new CategoryAdapter(getContext(), listCategory);
+        recyclerviewCategory.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
+        categoryAdapter = new CategoryAdapter(getContext() , listCategory);
         recyclerviewCategory.setAdapter(categoryAdapter);
 
         String url = Link.LINK_CATEGORY_BY_LIMIT;
@@ -299,9 +308,9 @@ public class HomeFragment extends Fragment {
             public void onResponse(JSONArray response) {
 
                 Gson gson = new Gson();
-                Category[] categories = gson.fromJson(response.toString(), Category[].class);
+                Category[] categories = gson.fromJson(response.toString() ,  Category[].class);
 
-                for (int i = 0; i < categories.length; i++) {
+                for (int i = 0 ; i<categories.length ; i++){
 
                     listCategory.add(categories[i]);
                     categoryAdapter.notifyDataSetChanged();
@@ -315,14 +324,15 @@ public class HomeFragment extends Fragment {
             @Override
             public void onErrorResponse(VolleyError error) {
 
-                Toast.makeText(getContext(), error.getMessage() + "", Toast.LENGTH_SHORT).show();
-                Log.d("Error : ", error.getMessage() + "");
+                Toast.makeText(getContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Log.d("Error : " , error.getMessage()+"");
 
             }
         };
 
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET , url ,null ,listener , errorListener );
         requestQueue.add(request);
+
 
     }
 
@@ -330,9 +340,9 @@ public class HomeFragment extends Fragment {
 
         viewPager = view.findViewById(R.id.viewPager);
         tabs = view.findViewById(R.id.tabs);
-        sliderAdapter = new SliderAdapter(getContext(), listBanner);
+        sliderAdapter = new SliderAdapter(getContext() , listBanner);
         viewPager.setAdapter(sliderAdapter);
-        tabs.setupWithViewPager(viewPager, true);
+        tabs.setupWithViewPager(viewPager , true);
 
         viewPager.setRotationY(180);
 
@@ -373,16 +383,18 @@ public class HomeFragment extends Fragment {
 
         String url = Link.LINK_BANNER_SLIDER;
 
-
         Response.Listener<JSONArray> listener = new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
 
                 Gson gson = new Gson();
-                Banner[] banners = gson.fromJson(response.toString(), Banner[].class);
-                for (int i = 0; i < banners.length; i++) {
+                Banner[] banners = gson.fromJson(response.toString() ,  Banner[].class);
+
+                for (int i = 0 ; i<banners.length ; i++){
+
                     listBanner.add(banners[i]);
                     sliderAdapter.notifyDataSetChanged();
+
                 }
 
             }
@@ -391,22 +403,25 @@ public class HomeFragment extends Fragment {
         Response.ErrorListener errorListener = new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getContext(), error.getMessage() + "hello", Toast.LENGTH_SHORT).show();
-                Log.d("Error : ", error.getMessage() + "");
+
+                Toast.makeText(getContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Log.d("Error : " , error.getMessage()+"");
+
             }
         };
-        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET, url, null, listener, errorListener);
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET , url ,null ,listener , errorListener );
         requestQueue.add(request);
 
         final boolean running_thread = true;
 
-        Thread thread = new Thread() {
+        Thread thread = new Thread(){
 
             @Override
             public void run() {
 
 
-                while (running_thread) {
+                while (running_thread){
 
                     try {
                         Thread.sleep(4000);
@@ -415,16 +430,16 @@ public class HomeFragment extends Fragment {
                         Toast.makeText(getContext(), "Failed", Toast.LENGTH_SHORT).show();
                     }
 
-                    if (getActivity() == null)
+                    if (getActivity()==null)
                         return;
 
                     getActivity().runOnUiThread(new Runnable() {
                         @Override
                         public void run() {
 
-                            if (viewPager.getCurrentItem() < listBanner.size() - 1) {
-                                viewPager.setCurrentItem(viewPager.getCurrentItem() + 1);
-                            } else {
+                            if (viewPager.getCurrentItem() < listBanner.size() -1){
+                                viewPager.setCurrentItem(viewPager.getCurrentItem()+1);
+                            }else {
                                 viewPager.setCurrentItem(0);
                             }
 
@@ -437,6 +452,8 @@ public class HomeFragment extends Fragment {
         };
         thread.start();
 
+
+
     }
+
 }
- 
