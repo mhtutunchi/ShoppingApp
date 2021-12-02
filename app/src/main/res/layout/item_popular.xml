@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:padding="8dp"
+    android:layoutDirection="rtl"
+    android:background="@color/colorBackground">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:text="پیشنهاد ویژه"
+        android:id="@+id/txt"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/txt"
+        android:layout_marginTop="8dp"
+        android:id="@+id/view_1"/>
+
+    <ImageView
+        android:layout_width="135dp"
+        android:layout_height="185dp"
+        android:id="@+id/img_product"
+        android:layout_below="@id/view_1"
+        android:layout_marginTop="8dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:textSize="12sp"
+        android:id="@+id/name_product"
+        android:textStyle="bold"
+        android:textColor="@color/textColor"
+        android:layout_below="@id/view_1"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/img_product"
+        android:layout_marginTop="16dp"/>
+
+    <LinearLayout
+        android:id="@+id/layout"
+        android:layout_marginTop="24dp"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/img_product"
+        android:layout_below="@id/name_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_shopping_cart_24"
+            android:tint="@color/colorPrimary"/>
+
+        <TextView
+            android:layout_marginRight="8dp"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:text="موجود در انبار"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_toLeftOf="@id/img_product"
+        android:layout_marginRight="8dp"
+        android:layout_marginLeft="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:gravity="center"
+        android:textColor="@color/colorBackground"
+        android:text="%30"
+        android:paddingLeft="6dp"
+        android:paddingRight="6dp"
+        android:layout_marginTop="24dp"
+
+        android:background="@drawable/bg_txt_value_off"
+        android:id="@+id/value_off"
+        android:layout_below="@id/layout"/>
+
+    <TextView
+        android:layout_marginLeft="4dp"
+        android:layout_marginRight="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/green"
+        android:textSize="12sp"
+        android:layout_below="@id/layout"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="24dp"
+        android:textStyle="bold"
+        android:text="2500000"
+        android:id="@+id/txt_price_off"/>
+
+
+    <TextView
+        android:layout_marginRight="4dp"
+        android:layout_marginLeft="4dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorPrimary"
+        android:textSize="12sp"
+        android:layout_below="@id/txt_price_off"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="4dp"
+        android:textStyle="bold"
+        android:text="2500000"
+        android:id="@+id/txt_price"/>
+
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/img_product"
+        android:layout_marginTop="8dp"/>
+
+</RelativeLayout>

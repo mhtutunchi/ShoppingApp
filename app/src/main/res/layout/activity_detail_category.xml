@@ -80,13 +80,13 @@
                     android:text="جدیدترین کالاهای موجود : "/>
 
                 <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView_new_product"
                     android:layout_width="match_parent"
                     android:layout_height="320dp"
-                    android:background="#040A33"
                     android:layout_below="@id/txt_new_product"
                     android:layout_marginTop="8dp"
                     android:layout_marginBottom="8dp"
-                    android:id="@+id/recyclerView_new_product"/>
+                    android:background="#040A33" />
 
 
                 <TextView
