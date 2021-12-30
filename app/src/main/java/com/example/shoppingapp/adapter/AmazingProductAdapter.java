@@ -1,5 +1,6 @@
 package com.example.shoppingapp.adapter;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.text.SpannableString;
@@ -13,7 +14,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.shoppingapp.Global.Key;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.activity.ShowDetailProductActivity;
 import com.example.shoppingapp.model.Amazing;
 import com.example.shoppingapp.model.AmazingOfferProduct;
 import com.example.shoppingapp.model.FirstAmazing;
@@ -47,10 +50,29 @@ public class AmazingProductAdapter extends RecyclerView.Adapter<RecyclerView.Vie
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
         if (getItemViewType(position) == 0) {
             AmazingOfferProduct amazingOfferProduct = (AmazingOfferProduct) data.get(position).getObject();
             ((AmazingOfferViewHolder) holder).setAmazingOffer(amazingOfferProduct);
+
+            holder.itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+
+                    Intent intent = new Intent(context , ShowDetailProductActivity.class);
+                    intent.putExtra(Key.id , ((AmazingOfferProduct) data.get(position).getObject()).getId());
+                    intent.putExtra(Key.title , ((AmazingOfferProduct) data.get(position).getObject()).getName());
+                    intent.putExtra(Key.brand , ((AmazingOfferProduct) data.get(position).getObject()).getBrand());
+                    intent.putExtra(Key.category_id , ((AmazingOfferProduct) data.get(position).getObject()).getCategory_id());
+                    intent.putExtra(Key.value_off , ((AmazingOfferProduct) data.get(position).getObject()).getValue_off());
+                    intent.putExtra(Key.price , ((AmazingOfferProduct) data.get(position).getObject()).getPrice());
+                    intent.putExtra(Key.price_off , ((AmazingOfferProduct) data.get(position).getObject()).getOffprice());
+                    intent.putExtra(Key.link_img , ((AmazingOfferProduct) data.get(position).getObject()).getLink_img());
+                    context.startActivity(intent);
+
+                }
+            });
+
 
         } else {
             FirstAmazing firstAmazing = (FirstAmazing) data.get(position).getObject();

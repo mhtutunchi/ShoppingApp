@@ -3,8 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/ShoppingApp/app/src/main/res/drawable/bg_default_tabs_image.xml" value="0.2708333333333333" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/drawable/bg_nav_selected_image.xml" value="0.2708333333333333" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/drawable/bg_selected_tabs.xml" value="0.2708333333333333" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/drawable/bg_selected_tabs_imager.xml" value="0.2708333333333333" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/drawable/bg_tabs_image_product.xml" value="0.2708333333333333" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_detail_category.xml" value="0.268" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_home.xml" value="0.23007246376811594" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_properties_product.xml" value="0.23007246376811594" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_review_product.xml" value="0.23007246376811594" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_show_category_detail_product.xml" value="0.24909420289855072" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/activity_show_detail_product.xml" value="0.268" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_category.xml" value="0.21693840579710144" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/fragment_home.xml" value="0.268" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_all_category.xml" value="0.268" />
@@ -15,10 +24,15 @@
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_first_amazing_offer.xml" value="0.12386018237082067" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_first_new_product.xml" value="0.24909420289855072" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_first_watch.xml" value="0.12386018237082067" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_image_product.xml" value="0.2" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_new_product.xml" value="0.12386018237082067" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_new_product_detail.xml" value="0.24909420289855072" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_new_watch.xml" value="0.21784420289855072" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_option_product.xml" value="0.24818840579710144" />
         <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_popular.xml" value="0.24909420289855072" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_properties_product.xml" value="0.23007246376811594" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_review_product.xml" value="0.23007246376811594" />
+        <entry key="..\:/ShoppingApp/app/src/main/res/layout/item_similar_product.xml" value="0.24818840579710144" />
       </map>
     </option>
   </component>
