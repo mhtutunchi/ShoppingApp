@@ -1,14 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     tools:context=".fragment.SearchFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <EditText
+        android:paddingLeft="4dp"
+        android:paddingRight="4dp"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F3EFEF"
+        android:id="@+id/edt_search"
+        android:hint="جست و جو ..."
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textColor="@color/textColor"
+        android:drawableRight="@drawable/ic_baseline_search_24"
+        android:drawablePadding="16dp"
+        android:gravity="right|center"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView_search"
+        android:layout_below="@+id/edt_search"
+        />
+
+</RelativeLayout>

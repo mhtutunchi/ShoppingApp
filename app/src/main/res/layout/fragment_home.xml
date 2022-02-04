@@ -25,7 +25,10 @@
                     android:id="@+id/viewPager"
                     android:layout_width="match_parent"
                     android:layout_height="120dp"
-                    android:layout_margin="8dp" />
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp" />
 
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabs"
@@ -51,8 +54,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/recyclerView_Category"
-                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     android:text="زمان باقی مانده تا پیشنهاد شگفت انگیز : "
                     android:textColor="@color/textColor"
                     android:textSize="12sp"
@@ -113,6 +118,7 @@
 
 
                     <LinearLayout
+
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
