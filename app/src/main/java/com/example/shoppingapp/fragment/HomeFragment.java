@@ -29,6 +29,7 @@ import com.example.shoppingapp.adapter.BrandAdapter;
 import com.example.shoppingapp.adapter.CategoryAdapter;
 import com.example.shoppingapp.adapter.NewProductAdapter;
 import com.example.shoppingapp.adapter.SliderAdapter;
+import com.example.shoppingapp.adapter.WatchProductAdapter;
 import com.example.shoppingapp.model.Amazing;
 import com.example.shoppingapp.model.AmazingOfferProduct;
 import com.example.shoppingapp.model.Banner;
@@ -83,6 +84,11 @@ public class HomeFragment extends Fragment {
     BrandAdapter brandAdapter;
     RecyclerView recyclerView_brand;
 
+    //Detail Category Product
+    List<Amazing> listDetailCategoryProduct = new ArrayList<>();
+    WatchProductAdapter watchProductAdapter;
+    RecyclerView recyclerView_new_watch;
+
     TextView txt_new_product_more;
 
 
@@ -111,6 +117,51 @@ public class HomeFragment extends Fragment {
     }
 
     private void getNewWatch() {
+
+        recyclerView_new_watch = view.findViewById(R.id.recyclerView_new_watch);
+        recyclerView_new_watch.setHasFixedSize(true);
+        recyclerView_new_watch.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
+
+        FirstAmazing firstAmazing_Watch = new FirstAmazing("جدید ترین ساعت های هوشمند را مشاهده کنید"
+                ,"https://pngriver.com/wp-content/uploads/2018/04/Download-Watch-PNG-Background-Image.png");
+
+        listDetailCategoryProduct.add(new Amazing(1 , firstAmazing_Watch));
+
+        watchProductAdapter = new WatchProductAdapter(getContext() , listDetailCategoryProduct);
+        recyclerView_new_watch.setAdapter(watchProductAdapter);
+
+        String url = Link.LINK_NEW_WATCH;
+
+        Response.Listener<JSONArray> listener = new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                Gson gson = new Gson();
+                Product[] products = gson.fromJson(response.toString() ,  Product[].class);
+
+                for (int i = 0 ; i<products.length ; i++){
+
+                    listDetailCategoryProduct.add(new Amazing(0 , products[i]));
+                    watchProductAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Log.d("Error : " , error.getMessage()+"");
+
+            }
+        };
+
+        JsonArrayRequest request = new JsonArrayRequest(Request.Method.GET , url ,null ,listener , errorListener );
+        requestQueue.add(request);
+
     }
 
     private void getBrand() {

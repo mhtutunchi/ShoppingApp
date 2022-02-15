@@ -1,6 +1,5 @@
 package com.example.shoppingapp.adapter;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.text.SpannableString;
 import android.text.style.StrikethroughSpan;
@@ -13,13 +12,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.shoppingapp.R;
-import com.example.shoppingapp.model.AmazingOfferProduct;
-import com.example.shoppingapp.model.DetailCategory;
 import com.squareup.picasso.Picasso;
 
 import java.text.DecimalFormat;
 import java.util.List;
+import com.example.shoppingapp.R;
+import com.example.shoppingapp.model.AmazingOfferProduct;
+import com.example.shoppingapp.model.DetailCategory;
 
 public class DetailProductPopularAdapter extends RecyclerView.Adapter<DetailProductPopularAdapter.MyViewHolder> {
 
@@ -41,7 +40,7 @@ public class DetailProductPopularAdapter extends RecyclerView.Adapter<DetailProd
     }
 
     @Override
-    public void onBindViewHolder(@NonNull MyViewHolder holder, @SuppressLint("RecyclerView") final int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder holder, final int position) {
 
         holder.name_product.setText(data.get(position).getName());
         Picasso.get().load(data.get(position).getLink_img()).into(holder.img_product);
@@ -54,9 +53,11 @@ public class DetailProductPopularAdapter extends RecyclerView.Adapter<DetailProd
         holder.value_off.setText(data.get(position).getValue_off() + " % ");
 
         SpannableString spannableString = new SpannableString(txt_price_deci);
-        spannableString.setSpan(new StrikethroughSpan(), 0, data.get(position).getPrice().length(), SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
+        spannableString.setSpan(new StrikethroughSpan() , 0 , data.get(position).getPrice().length() , SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         holder.txt_price.setText(spannableString);
+
+
     }
 
     @Override
@@ -64,10 +65,11 @@ public class DetailProductPopularAdapter extends RecyclerView.Adapter<DetailProd
         return data.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
+    public class MyViewHolder extends RecyclerView.ViewHolder  {
 
         ImageView img_product;
-        TextView name_product, txt_price_off, value_off, txt_price;
+        TextView  name_product , txt_price_off , value_off , txt_price;
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
