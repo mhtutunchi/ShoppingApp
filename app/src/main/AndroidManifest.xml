@@ -11,25 +11,29 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        tools:replace="android:theme"
         android:theme="@style/Theme.ShoppingApp"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activity.RegisterActivity"
-            android:exported="true" >
+            android:name=".activity.SendCommentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.CommentActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.QuestionActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.IntroActivity"
+            android:exported="true">
 
         </activity>
         <activity
+            android:name=".activity.RegisterActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.LoginActivity"
-            android:exported="true" >
-
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activity.CompareActivity"
             android:exported="true" />
@@ -54,8 +58,13 @@
         <activity
             android:name=".activity.DetailCategoryActivity"
             android:exported="true" />
-        <activity android:name=".activity.HomeActivity">
+        <activity android:name=".activity.HomeActivity" >
 
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

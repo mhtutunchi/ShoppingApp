@@ -14,6 +14,7 @@ import android.widget.TextView;
 
 import com.example.shoppingapp.Global.MyPrefManager;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.activity.QuestionActivity;
 
 //import first.example.paliz.shoppingapp.activity.FavoriteActivity;
 //import first.example.paliz.shoppingapp.activity.OrderProductActivity;
@@ -53,15 +54,15 @@ public class ProfileFragment extends Fragment {
         txt_phone.setText("موبایل : "+myPrefManager.getUserData().get(MyPrefManager.PHONE));
         txt_email.setText("ایمیل : "+myPrefManager.getUserData().get(MyPrefManager.EMAIL));
 
-//        card_question.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                startActivity(new Intent(getContext() , QuestionActivity.class));
-//
-//            }
-//        });
-//
+        card_question.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getContext() , QuestionActivity.class));
+
+            }
+        });
+
 //        card_favorite.setOnClickListener(new View.OnClickListener() {
 //            @Override
 //            public void onClick(View view) {

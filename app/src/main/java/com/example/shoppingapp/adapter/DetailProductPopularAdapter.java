@@ -22,7 +22,6 @@ import com.example.shoppingapp.model.DetailCategory;
 
 public class DetailProductPopularAdapter extends RecyclerView.Adapter<DetailProductPopularAdapter.MyViewHolder> {
 
-
     Context context;
     List<AmazingOfferProduct> data;
 
@@ -54,10 +53,7 @@ public class DetailProductPopularAdapter extends RecyclerView.Adapter<DetailProd
 
         SpannableString spannableString = new SpannableString(txt_price_deci);
         spannableString.setSpan(new StrikethroughSpan() , 0 , data.get(position).getPrice().length() , SpannableString.SPAN_EXCLUSIVE_EXCLUSIVE);
-
         holder.txt_price.setText(spannableString);
-
-
     }
 
     @Override
@@ -70,17 +66,13 @@ public class DetailProductPopularAdapter extends RecyclerView.Adapter<DetailProd
         ImageView img_product;
         TextView  name_product , txt_price_off , value_off , txt_price;
 
-
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
-
             img_product = itemView.findViewById(R.id.img_product);
             name_product = itemView.findViewById(R.id.name_product);
             txt_price_off = itemView.findViewById(R.id.txt_price_off);
             value_off = itemView.findViewById(R.id.value_off);
             txt_price = itemView.findViewById(R.id.txt_price);
-
         }
-
     }
 }

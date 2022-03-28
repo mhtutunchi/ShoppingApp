@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/colorBackground"
+    android:padding="8dp"
+    android:layoutDirection="rtl">
+
+    <RelativeLayout
+        android:id="@+id/parent_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@drawable/bg_title_question">
+
+        <TextView
+            android:layout_centerVertical="true"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorPrimary"
+            android:textStyle="bold"
+            android:textSize="12sp"
+            android:maxLines="1"
+            android:id="@+id/txt_title"
+            android:layout_toRightOf="@id/img_add"
+            android:layout_marginLeft="8dp"
+            android:text="عنوان"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:id="@+id/img_add"
+            app:srcCompat="@drawable/ic_baseline_add_24"
+            android:layout_alignParentLeft="true"
+            android:tint="#08166C"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:visibility="gone"
+        android:padding="8dp"
+        android:layout_marginTop="-8dp"
+        android:background="@drawable/bg_description_question"
+        android:layout_below="@id/parent_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/parent_description">
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="4dp"
+            android:id="@+id/txt_description"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/textColor"/>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

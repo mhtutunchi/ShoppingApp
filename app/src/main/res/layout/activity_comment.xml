@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.CommentActivity"
+    android:layoutDirection="rtl"
+    android:background="@color/colorBackground">
+
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:padding="8dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_back"
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+            android:layout_centerVertical="true"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBackground"
+            android:text="دیدگاه"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@id/img_back"
+            android:layout_marginRight="8dp"/>
+
+    </RelativeLayout>
+
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView_comment"
+        android:layout_below="@id/toolbar" />
+
+
+    <LinearLayout
+        android:id="@+id/layout_send_comment"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingBottom="6dp"
+        android:paddingTop="6dp"
+        android:background="@drawable/bg_layout_send_comment"
+        android:layout_margin="16dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_marginRight="4dp"
+            android:layout_marginLeft="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_baseline_comment_24"
+            />
+
+        <TextView
+            android:layout_gravity="center"
+            android:layout_marginLeft="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textColor="@color/colorBackground"
+            android:textSize="12sp"
+            android:text="ثبت دیدگاه"/>
+
+    </LinearLayout>
+
+</RelativeLayout>

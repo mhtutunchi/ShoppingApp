@@ -19,6 +19,9 @@ public class Link {
     public static final String LINK_PROPERTIES_PRODUCT = "http://192.168.1.9/shopping/getPropertiesProduct.php";
     public static final String LINK_CHART_PRODUCT = "http://192.168.1.9/shopping/getChartProduct.php";
     public static final String LINK_COMPARE_PRODUCT ="http://192.168.1.9/shopping/getCompareProdcut.php" ;
+    public static final String LINK_INTRO = "http://192.168.1.9/shopping/getIntro.php";
+    public static final String LINK_QUESTION = "http://192.168.1.9/shopping/getQuestion.php";
+    public static final String LINK_ALL_COMMENT = "http://192.168.1.9/shopping/getComment.php";
     public static String LINK_All_CATEGORY ="http://192.168.1.9/shopping/getAllCategory.php";
     public static String LINK_NEW_WATCH ="http://192.168.1.9/shopping/getDetailCategoryProduct.php";
 }

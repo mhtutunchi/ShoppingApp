@@ -72,6 +72,7 @@ public class ShowDetailProductActivity extends AppCompatActivity {
 
     ImageView img_more, img_favorite, img_Shopping;
 
+    TextView txt_all_comment;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -169,6 +170,18 @@ public class ShowDetailProductActivity extends AppCompatActivity {
             }
         });
 
+        txt_all_comment = findViewById(R.id.txt_all_comment);
+        txt_all_comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(ShowDetailProductActivity.this , CommentActivity.class);
+                intent.putExtra(Key.id , id);
+                intent.putExtra(Key.link_img , link_img);
+                intent.putExtra(Key.title , name_product);
+                startActivity(intent);
+            }
+        });
 
 
     }

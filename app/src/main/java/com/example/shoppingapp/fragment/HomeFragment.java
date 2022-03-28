@@ -123,7 +123,7 @@ public class HomeFragment extends Fragment {
         recyclerView_new_watch.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
 
         FirstAmazing firstAmazing_Watch = new FirstAmazing("جدید ترین ساعت های هوشمند را مشاهده کنید"
-                ,"https://pngriver.com/wp-content/uploads/2018/04/Download-Watch-PNG-Background-Image.png");
+                ,"https://www.pngmart.com/files/6/Watch-PNG-Background-Image.png");
 
         listDetailCategoryProduct.add(new Amazing(1 , firstAmazing_Watch));
 
