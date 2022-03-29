@@ -23,6 +23,14 @@ public class Link {
     public static final String LINK_QUESTION = "http://192.168.1.9/shopping/getQuestion.php";
     public static final String LINK_ALL_COMMENT = "http://192.168.1.9/shopping/getComment.php";
     public static final String LINK_LIMIT_COMMENT = "http://192.168.1.9/shopping/getCommentByLimit.php";
+    public static final String LINK_ALL_PRODUCT = "http://192.168.1.9/shopping/getAllProduct.php";
+    public static final String LINK_PRODUCT_PRICE_ASC = "http://192.168.1.9/shopping/sortProductByPriceAsc.php";
+    public static final String LINK_PRODUCT_PRICE_DESC = "http://192.168.1.9/shopping/sortProductByPriceDesc.php";
+    public static final String LINK_PRODUCT_VIEW_DECS = "http://192.168.1.9/shopping/sorProductByViewDecs.php";
+    public static final String LINK_PRODUCT_SOLD_DECS = "http://192.168.1.9/shopping/sortProductBySoldDesc.php";
+    public static final String LINK_BRAND_PRODUCT = "http://192.168.1.9/shopping/getBrandProduct.php";
+    public static final String LINK_FILTER_BRAND = "http://192.168.1.9/shopping/getBrandForFilter.php";
+    public static final String LINK_FILTER_CATEGORY = "http://192.168.1.9/shopping/getCategoryForFilter.php";
     public static String LINK_All_CATEGORY ="http://192.168.1.9/shopping/getAllCategory.php";
     public static String LINK_NEW_WATCH ="http://192.168.1.9/shopping/getDetailCategoryProduct.php";
 }

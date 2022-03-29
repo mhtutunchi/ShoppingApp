@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.AllProductActivity"
+    android:background="@color/colorBackground"
+    android:layoutDirection="rtl">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:padding="8dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_back"
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+            android:layout_centerVertical="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBackground"
+            android:text="همه محصولات موجود"
+            android:layout_centerInParent="true"/>
+
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#F3EFEF"
+        android:layout_below="@id/toolbar"
+        android:id="@+id/layout_sort_filter"
+        android:weightSum="2"
+        android:orientation="horizontal">
+
+
+        <LinearLayout
+            android:id="@+id/layout_filter"
+            android:gravity="center|right"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_filter_list_24"
+                android:tint="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                android:text="فیلتر کردن محصولات"
+                android:layout_marginRight="8dp"/>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/layout_sort"
+            android:gravity="center|right"
+            android:orientation="horizontal"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_baseline_sort_24"
+                android:tint="@color/colorPrimary"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="@color/textColor"
+                android:textSize="12sp"
+                android:text="مرتب سازی محصولات"
+                android:layout_marginRight="8dp"/>
+
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/recyclerView_product"
+        android:layout_below="@id/layout_sort_filter"/>
+
+
+
+</RelativeLayout>

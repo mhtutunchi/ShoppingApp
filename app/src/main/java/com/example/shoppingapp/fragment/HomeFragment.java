@@ -1,5 +1,6 @@
 package com.example.shoppingapp.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -23,6 +24,7 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.shoppingapp.Global.Link;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.activity.AllProductActivity;
 import com.example.shoppingapp.adapter.AmazingProductAdapter;
 import com.example.shoppingapp.adapter.BannerSecondAdapter;
 import com.example.shoppingapp.adapter.BrandAdapter;
@@ -109,12 +111,22 @@ public class HomeFragment extends Fragment {
         getNewWatch();
         getTimer();
 
+        txt_new_product_more = view.findViewById(R.id.txt_new_product_more);
+        txt_new_product_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getContext() , AllProductActivity.class);
+                startActivity(intent);
+
+            }
+        });
+
         return view;
     }
 
 
-    private void getTimer() {
-    }
+    private void getTimer() {}
 
     private void getNewWatch() {
 
@@ -206,7 +218,6 @@ public class HomeFragment extends Fragment {
 
 
     }
-
 
     private void getNewProduct() {
 

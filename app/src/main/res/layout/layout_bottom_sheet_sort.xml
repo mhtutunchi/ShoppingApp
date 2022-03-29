@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/parent"
+    android:layoutDirection="rtl">
+
+
+    <RadioGroup
+        android:padding="12dp"
+        android:background="@drawable/bg_sort"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RadioButton
+            android:theme="@style/RadioButton"
+            android:id="@+id/rdb_new"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:text="جدید ترین"
+            android:paddingRight="8dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.75dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"/>
+
+        <RadioButton
+            android:theme="@style/RadioButton"
+            android:id="@+id/rdb_price_desc"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:text="قیمت از زیاد به کم"
+            android:paddingRight="8dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.75dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"/>
+
+        <RadioButton
+            android:theme="@style/RadioButton"
+            android:id="@+id/rdb_price_asc"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:text="قیمت از کم به زیاد"
+            android:paddingRight="8dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.75dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"/>
+
+
+        <RadioButton
+            android:theme="@style/RadioButton"
+            android:id="@+id/rdb_view"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:text="پربازدید ترین"
+            android:paddingRight="8dp"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.75dp"
+            android:background="@android:color/darker_gray"
+            android:layout_marginTop="8dp"/>
+
+
+        <RadioButton
+            android:theme="@style/RadioButton"
+            android:id="@+id/rdb_sold"
+            android:layout_marginTop="8dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:textColor="@color/textColor"
+            android:text="پر فروش ترین"
+            android:paddingRight="8dp"/>
+
+
+    </RadioGroup>
+
+</LinearLayout>

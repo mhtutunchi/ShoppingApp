@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:padding="4dp"
+    android:layoutDirection="rtl">
+
+    <RadioButton
+        android:theme="@style/RadioButton"
+        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColor"
+        android:textSize="12sp"
+        android:textStyle="bold"
+        android:text="کالای دیجیتال"
+        android:paddingRight="4dp"
+        android:id="@+id/rdb_filter"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.75dp"
+        android:background="@android:color/darker_gray"
+        android:layout_below="@id/rdb_filter"
+        android:layout_marginTop="4dp"/>
+
+</RelativeLayout>

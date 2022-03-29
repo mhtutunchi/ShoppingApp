@@ -11,9 +11,21 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        tools:replace="android:theme"
         android:theme="@style/Theme.ShoppingApp"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:replace="android:theme">
+        <activity
+            android:name=".activity.ShowProductFilterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.BrandProductActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.FilterActivity"
+            android:exported="true" />
+        <activity
+            android:name=".activity.AllProductActivity"
+            android:exported="true" />
         <activity
             android:name=".activity.SendCommentActivity"
             android:exported="true" />
@@ -25,17 +37,13 @@
             android:exported="true" />
         <activity
             android:name=".activity.IntroActivity"
-            android:exported="true">
-
-        </activity>
+            android:exported="true" />
         <activity
             android:name=".activity.RegisterActivity"
             android:exported="true" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true" >
-
-
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -66,9 +74,7 @@
         <activity
             android:name=".activity.DetailCategoryActivity"
             android:exported="true" />
-        <activity android:name=".activity.HomeActivity" >
-
-        </activity>
+        <activity android:name=".activity.HomeActivity" />
     </application>
 
 </manifest>

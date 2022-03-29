@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorBackground"
+    android:layoutDirection="rtl"
+    tools:context=".activity.FilterActivity">
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:padding="8dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_back"
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+            android:layout_centerVertical="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:textColor="@color/colorBackground"
+            android:text="فیلتر کردن محصولات"
+            android:id="@+id/name_brand"
+            android:layout_centerInParent="true"/>
+
+
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_above="@id/btn_filter"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none"
+        android:layout_below="@id/toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <RelativeLayout
+                    android:id="@+id/parent_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    >
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:maxLines="1"
+                        android:id="@+id/txt_title"
+                        android:layout_toRightOf="@id/img_add"
+                        android:layout_marginLeft="8dp"
+                        android:text="دسته بندی"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/img_add"
+                        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24"
+                        android:layout_alignParentLeft="true"
+                        android:tint="#08166C"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:padding="8dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_below="@id/parent_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/parent_description">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/recyclerView_Category"/>
+
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
+                    android:id="@+id/parent_title_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="8dp"
+                    android:layout_below="@id/parent_description"
+                    >
+
+                    <TextView
+                        android:layout_centerVertical="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/textColor"
+                        android:textStyle="bold"
+                        android:textSize="12sp"
+                        android:maxLines="1"
+                        android:id="@+id/txt_title_2"
+                        android:layout_toRightOf="@id/img_add_2"
+                        android:layout_marginLeft="8dp"
+                        android:text="برند"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/img_add_2"
+                        app:srcCompat="@drawable/ic_baseline_keyboard_arrow_left_24"
+                        android:layout_alignParentLeft="true"
+                        android:tint="#08166C"/>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:visibility="gone"
+                    android:padding="8dp"
+                    android:layout_marginTop="-8dp"
+                    android:layout_below="@id/parent_title_2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/parent_description_2">
+
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/recyclerView_brand"/>
+
+
+                </RelativeLayout>
+
+
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@drawable/bg_btn_login"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="8dp"
+        android:text="فیلتر کردن"
+        android:id="@+id/btn_filter"
+        android:textStyle="bold"
+        android:textSize="12sp"
+        android:textColor="@color/colorBackground"/>
+
+
+</RelativeLayout>
