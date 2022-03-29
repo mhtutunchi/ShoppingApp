@@ -96,15 +96,19 @@
                 android:textStyle="bold"
                 android:text="امتیاز شما به این محصول : "/>
 
-            <RatingBar
-
+            <com.hedgehog.ratingbar.RatingBar
                 android:id="@+id/rating"
                 android:layout_width="wrap_content"
-                android:layout_height="50dp"
+                android:layout_height="wrap_content"
+                app:starImageSize="22dp"
+                app:starEmpty="@mipmap/star_empty"
+                app:starFill="@mipmap/star_full"
+                app:starImagePadding="2dp"
+                app:starImageHeight="22dp"
                 android:layout_marginRight="8dp"
-                android:numStars="5"
-                android:background="@color/colorBackground"
-                 />
+                android:isIndicator="false"
+                app:starImageWidth="22dp" />
+
         </LinearLayout>
 
         <EditText

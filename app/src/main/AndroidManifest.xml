@@ -33,7 +33,15 @@
             android:exported="true" />
         <activity
             android:name=".activity.LoginActivity"
-            android:exported="true" />
+            android:exported="true" >
+
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".activity.CompareActivity"
             android:exported="true" />
@@ -60,11 +68,6 @@
             android:exported="true" />
         <activity android:name=".activity.HomeActivity" >
 
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
     </application>
 

@@ -386,6 +386,16 @@
             android:id="@+id/btn_send_to_cart"
             />
 
+        <com.cepheuen.elegantnumberbutton.view.ElegantNumberButton
+            app:initialNumber="1"
+            app:finalNumber="100"
+            app:textColor="@color/colorBackground"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:id="@+id/elegunt"
+            android:layout_marginRight="8dp"
+            android:layout_toLeftOf="@id/btn_send_to_cart"/>
+
 
 
         <TextView

@@ -19,4 +19,16 @@ public interface ApiInterface {
     @POST("register.php")
     Call<Users> sendRegisterForUsers(@Field("email") String email, @Field("phone") String phone , @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST("sendComment.php")
+    Call<Message> sendComment(
+            @Field("id_product") String id_product,
+            @Field("user_email") String user_email ,
+            @Field("description") String description,
+            @Field("date") String date,
+            @Field("rating") String rating,
+            @Field("positive") String positive,
+            @Field("negative") String negative,
+            @Field("title") String title
+    );
 }

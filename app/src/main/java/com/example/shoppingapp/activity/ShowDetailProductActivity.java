@@ -28,9 +28,11 @@ import com.android.volley.toolbox.Volley;
 import com.example.shoppingapp.Global.Key;
 import com.example.shoppingapp.Global.Link;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.adapter.CommentLimitAdapter;
 import com.example.shoppingapp.adapter.ImageProductAdapter;
 import com.example.shoppingapp.adapter.OptionProductAdapter;
 import com.example.shoppingapp.adapter.SimilarProductAdapter;
+import com.example.shoppingapp.model.Comment;
 import com.example.shoppingapp.model.ImageProduct;
 import com.example.shoppingapp.model.OptionProduct;
 import com.example.shoppingapp.model.Product;
@@ -66,6 +68,11 @@ public class ShowDetailProductActivity extends AppCompatActivity {
     RecyclerView recyclerView_option_product;
     List<OptionProduct> listOptionProduct = new ArrayList<>();
     OptionProductAdapter optionProductAdapter;
+
+    //Comment Product
+    RecyclerView recyclerView_comment_product;
+    List<Comment> listComment= new ArrayList<>();
+    CommentLimitAdapter commentLimitAdapter;
 
     //Review _ Properties
     RelativeLayout relativeLayout_review, relativeLayout_properties;
@@ -211,6 +218,59 @@ public class ShowDetailProductActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        getCommentByLimit(id);
+    }
+
+    private void getCommentByLimit(String id) {
+
+        recyclerView_comment_product = findViewById(R.id.recyclerView_comment);
+        recyclerView_comment_product.setHasFixedSize(true);
+        recyclerView_comment_product.setLayoutManager(new LinearLayoutManager(this , LinearLayoutManager.HORIZONTAL , false));
+        commentLimitAdapter = new CommentLimitAdapter(this , listComment);
+        recyclerView_comment_product.setAdapter(commentLimitAdapter);
+
+        String url = Link.LINK_LIMIT_COMMENT;
+
+        Response.Listener<String> listener = new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+                Gson gson = new Gson();
+                Comment[] comments = gson.fromJson(response.toString() ,  Comment[].class);
+
+                for (int i = 0 ; i<comments.length ; i++){
+
+                    listComment.add(comments[i]);
+                    commentLimitAdapter.notifyDataSetChanged();
+
+                }
+
+            }
+        };
+
+        Response.ErrorListener errorListener = new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+                Toast.makeText(getApplicationContext(), error.getMessage()+"", Toast.LENGTH_SHORT).show();
+                Log.d("Error : " , error.getMessage()+"");
+
+            }
+        };
+
+        StringRequest request = new StringRequest(Request.Method.POST , url  ,listener , errorListener ){
+
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+
+                HashMap<String , String> map = new HashMap<>();
+                map.put(Key.id , id);
+                return map;
+
+            }
+        };
+        requestQueue.add(request);
+
     }
 
     private void getOptionProduct(String id) {
