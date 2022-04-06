@@ -1,5 +1,7 @@
 package com.example.shoppingapp.adapter;
 
+
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.text.SpannableString;
@@ -18,9 +20,8 @@ import com.squareup.picasso.Picasso;
 import java.text.DecimalFormat;
 import java.util.List;
 
-import com.example.shoppingapp.R;
 import com.example.shoppingapp.Global.Key;
-
+import com.example.shoppingapp.R;
 import com.example.shoppingapp.activity.ShowDetailProductActivity;
 import com.example.shoppingapp.model.Amazing;
 import com.example.shoppingapp.model.AmazingOfferProduct;
@@ -42,26 +43,26 @@ public class WatchProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
         //Item Amazing Offer
-        if (viewType == 0) {
-            View view = LayoutInflater.from(context).inflate(R.layout.item_new_watch, parent, false);
+        if (viewType==0){
+            View view = LayoutInflater.from(context).inflate(R.layout.item_new_watch , parent , false);
             return new AmazingOfferViewHolder(view);
-        } else {
-            View view = LayoutInflater.from(context).inflate(R.layout.item_first_watch, parent, false);
+        }else {
+            View view = LayoutInflater.from(context).inflate(R.layout.item_first_watch , parent , false);
             return new FirsAmazingViewHolder(view);
         }
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, @SuppressLint("RecyclerView") int position) {
 
-        if (getItemViewType(position) == 0) {
+        if (getItemViewType(position)==0){
             Product product = (Product) data.get(position).getObject();
-            ((AmazingOfferViewHolder) holder).setNewWatchProduct(product);
+            ((AmazingOfferViewHolder)holder).setNewWatchProduct(product);
 
 
-        } else {
+        }else {
             FirstAmazing firstAmazing = (FirstAmazing) data.get(position).getObject();
-            ((FirsAmazingViewHolder) holder).setFirstAmazing(firstAmazing);
+            ((FirsAmazingViewHolder)holder).setFirstAmazing(firstAmazing);
 
         }
 
@@ -90,7 +91,7 @@ public class WatchProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         }
 
-        public void setFirstAmazing(FirstAmazing firstAmazing) {
+        public void setFirstAmazing(FirstAmazing firstAmazing){
 
             txt_first_title.setText(firstAmazing.getTitle());
             Picasso.get().load(firstAmazing.getLink_img()).into(img_first_amazing);
@@ -102,7 +103,7 @@ public class WatchProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public static class AmazingOfferViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img_amazing_offer;
-        TextView name_product, txt_price_off, value_off, txt_price;
+        TextView name_product , txt_price_off , value_off , txt_price;
 
         public AmazingOfferViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -115,13 +116,13 @@ public class WatchProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         }
 
-        public void setNewWatchProduct(Product product) {
+        public void setNewWatchProduct(Product product){
 
             DecimalFormat decimalFormat = new DecimalFormat("###,###");
             String txt_price_deci = decimalFormat.format(Integer.valueOf(product.getPrice()));
             name_product.setText(product.getName());
 
-            txt_price.setText(txt_price_deci + "تومان ");
+            txt_price.setText(txt_price_deci+ "تومان ");
 
             Picasso.get().load(product.getLink_img()).into(img_amazing_offer);
         }

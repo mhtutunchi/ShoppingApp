@@ -81,8 +81,6 @@ public class FilterActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                Toast.makeText(FilterActivity.this, category_id +"   " + brand_id, Toast.LENGTH_SHORT).show();
-
                 if (category_id != null || brand_id != null){
 
                     Intent intent = new Intent(FilterActivity.this ,ShowProductFilterActivity.class );

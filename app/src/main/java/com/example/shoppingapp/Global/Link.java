@@ -31,6 +31,9 @@ public class Link {
     public static final String LINK_BRAND_PRODUCT = "http://192.168.1.9/shopping/getBrandProduct.php";
     public static final String LINK_FILTER_BRAND = "http://192.168.1.9/shopping/getBrandForFilter.php";
     public static final String LINK_FILTER_CATEGORY = "http://192.168.1.9/shopping/getCategoryForFilter.php";
+    public static final String LINK_PRODUCT_FOR_SEARCH = "http://192.168.1.9/shopping/getProductForSearch.php";
     public static String LINK_All_CATEGORY ="http://192.168.1.9/shopping/getAllCategory.php";
     public static String LINK_NEW_WATCH ="http://192.168.1.9/shopping/getDetailCategoryProduct.php";
+    public static final String LINK_PRODUCT_FILTER_CATEGORY = "http://192.168.1.9/shopping/getFilterProductByCategory.php";
+    public static final String LINK_PRODUCT_FILTER_BRAND = "http://192.168.1.9/shopping/getFilterProductByBrand.php";
 }

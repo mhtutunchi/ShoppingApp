@@ -54,4 +54,5 @@ public class Product {
     public void setBrand(String brand) {
         this.brand = brand;
     }
+
 }

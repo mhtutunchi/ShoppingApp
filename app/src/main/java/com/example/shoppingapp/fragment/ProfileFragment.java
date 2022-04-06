@@ -14,19 +14,15 @@ import android.widget.TextView;
 
 import com.example.shoppingapp.Global.MyPrefManager;
 import com.example.shoppingapp.R;
+import com.example.shoppingapp.activity.FavoriteActivity;
+import com.example.shoppingapp.activity.OrderProductActivity;
 import com.example.shoppingapp.activity.QuestionActivity;
-
-//import first.example.paliz.shoppingapp.activity.FavoriteActivity;
-//import first.example.paliz.shoppingapp.activity.OrderProductActivity;
-//import first.example.paliz.shoppingapp.activity.QuestionActivity;
 
 public class ProfileFragment extends Fragment {
 
 
 
-    public ProfileFragment() {
-        // Required empty public constructor
-    }
+    public ProfileFragment() {}
 
     View view;
     TextView txt_phone , txt_email;
@@ -63,23 +59,23 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-//        card_favorite.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                startActivity(new Intent(getContext() , FavoriteActivity.class));
-//
-//            }
-//        });
+        card_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-//        card_order.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                startActivity(new Intent(getContext() , OrderProductActivity.class));
-//
-//            }
-//        });
+                startActivity(new Intent(getContext() , FavoriteActivity.class));
+
+            }
+        });
+
+        card_order.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                startActivity(new Intent(getContext() , OrderProductActivity.class));
+
+            }
+        });
 
         return view;
 

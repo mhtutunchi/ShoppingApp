@@ -15,6 +15,25 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".activity.OrderProductActivity"
+            android:exported="false" />
+        <activity android:name=".activity.PayOffActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="app" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.CartActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.FavoriteActivity"
+            android:exported="true" />
+        <activity
             android:name=".activity.ShowProductFilterActivity"
             android:exported="true" />
         <activity

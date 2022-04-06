@@ -1,5 +1,8 @@
 package com.example.shoppingapp.api;
 
+import com.example.shoppingapp.model.Cart;
+import com.example.shoppingapp.model.Order;
+
 import java.util.List;
 
 import retrofit2.Call;
@@ -31,4 +34,26 @@ public interface ApiInterface {
             @Field("negative") String negative,
             @Field("title") String title
     );
+
+    @FormUrlEncoded
+    @POST("sendToCart.php")
+    Call<Message> sendToCart(@Field("id_product") String id_product , @Field("user_email") String user_email);
+
+    @GET("getCountCart.php")
+    Call<Message> getCountCart(@Query("user_email") String user_email);
+
+    @GET("getListCart.php")
+    Call<List<Cart>> getListCart(@Query("user_email") String user_email);
+
+    @GET("deleteCartProduct.php")
+    Call<Message> deleteCart(@Query("cart_id") String cart_id);
+
+    @GET("getPayOff.php")
+    Call<List<Cart>> updateCart(@Query("user_email") String user_email , @Query("token_pay_off") String token_pay_off);
+
+    @GET("getOrderProduct.php")
+    Call<List<Order>> getListOrderProduct(@Query("user_email") String user_email );
+
+
+
 }
