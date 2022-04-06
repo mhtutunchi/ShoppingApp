@@ -15,6 +15,9 @@
         android:usesCleartextTraffic="true"
         tools:replace="android:theme">
         <activity
+            android:name=".activity.VerifyPhoneActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.OrderProductActivity"
             android:exported="false" />
         <activity android:name=".activity.PayOffActivity">

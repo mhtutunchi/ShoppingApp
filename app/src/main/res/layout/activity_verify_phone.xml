@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layoutDirection="rtl"
+    android:background="@color/colorBackground"
+    tools:context=".activity.VerifyPhoneActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/toolbar"
+        android:padding="8dp"
+        android:background="@color/colorPrimary"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize">
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_back"
+            app:srcCompat="@drawable/ic_baseline_arrow_forward_24"
+            android:layout_centerVertical="true"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="احراز هویت"
+            android:textSize="14sp"
+            android:textColor="@color/colorBackground"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
+
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:visibility="visible"
+        android:id="@+id/card_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="16dp"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp">
+
+        <LinearLayout
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/textColor"
+                android:lineSpacingExtra="4dp"
+                android:text="برای دریافت کد تایید شماره موبایل خود را وارد کنید"/>
+
+
+            <EditText
+                android:gravity="right|center"
+                android:inputType="phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:id="@+id/edt_phone"
+                android:hint="شماره موبایل"
+                android:drawableRight="@drawable/ic_baseline_smartphone_24"
+                android:background="@drawable/bg_edt"
+                android:textColor="@color/textColor"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                android:drawablePadding="8dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:paddingRight="4dp"
+                android:paddingLeft="4dp"
+                />
+
+
+            <Button
+                android:id="@+id/btn_send_Code"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorBackground"
+                android:text="ارسال کد تایید"
+                android:textStyle="bold"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/bg_btn_login"
+                android:paddingTop="2dp"
+                android:paddingBottom="8dp"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:visibility="gone"
+        android:id="@+id/card_verify"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="16dp"
+        android:layout_centerInParent="true"
+        android:layout_marginRight="32dp"
+        android:layout_marginLeft="32dp">
+
+        <LinearLayout
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/textColor"
+                android:lineSpacingExtra="4dp"
+                android:text="لطفا کد ارسال شده را وارد کنید"/>
+
+
+            <com.chaos.view.PinView
+                android:inputType="number"
+                android:layout_marginTop="32dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/pinView"
+                style="@style/PinWidget.PinView"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/textColor"
+                app:itemCount="6"
+                app:itemHeight="40dp"
+                app:itemRadius="4dp"
+                app:itemSpacing="6dp"
+                android:layout_gravity="center"
+                app:lineColor="#0F1A5A"
+                app:itemWidth="40dp"/>
+
+
+
+            <Button
+                android:id="@+id/btn_verify"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorBackground"
+                android:text="تایید"
+                android:textStyle="bold"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/bg_btn_login"
+                android:paddingTop="2dp"
+                android:paddingBottom="8dp"/>
+
+            <Button
+                android:id="@+id/btn_retry"
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:textSize="12sp"
+                android:textColor="@color/colorBackground"
+                android:text="ارسال مجدد کد تایید"
+                android:textStyle="bold"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_btn_login"
+                android:paddingTop="2dp"
+                android:paddingBottom="8dp"/>
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>
