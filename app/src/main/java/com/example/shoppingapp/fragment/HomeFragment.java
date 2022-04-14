@@ -22,6 +22,17 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.google.android.material.tabs.TabLayout;
+import com.google.gson.Gson;
+
+import org.json.JSONArray;
+
+import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
+
 import com.example.shoppingapp.Global.Link;
 import com.example.shoppingapp.R;
 import com.example.shoppingapp.activity.AllProductActivity;
@@ -32,6 +43,8 @@ import com.example.shoppingapp.adapter.CategoryAdapter;
 import com.example.shoppingapp.adapter.NewProductAdapter;
 import com.example.shoppingapp.adapter.SliderAdapter;
 import com.example.shoppingapp.adapter.WatchProductAdapter;
+import com.example.shoppingapp.api.ApiClient;
+import com.example.shoppingapp.api.ApiInterface;
 import com.example.shoppingapp.model.Amazing;
 import com.example.shoppingapp.model.AmazingOfferProduct;
 import com.example.shoppingapp.model.Banner;
@@ -39,17 +52,16 @@ import com.example.shoppingapp.model.Brand;
 import com.example.shoppingapp.model.Category;
 import com.example.shoppingapp.model.FirstAmazing;
 import com.example.shoppingapp.model.Product;
-import com.google.android.material.tabs.TabLayout;
-import com.google.gson.Gson;
+import com.example.shoppingapp.model.TimerAmazing;
+import retrofit2.Call;
+import retrofit2.Callback;
 
-import org.json.JSONArray;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFragment extends Fragment {
 
+
     public HomeFragment() {
+        // Required empty public constructor
     }
 
     View view;
@@ -94,6 +106,12 @@ public class HomeFragment extends Fragment {
     TextView txt_new_product_more;
 
 
+    //Timer
+    Timer timer;
+    TextView txt_second , txt_minute , txt_hour;
+    ApiInterface request;
+
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -101,6 +119,9 @@ public class HomeFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_home, container, false);
 
         requestQueue = Volley.newRequestQueue(getContext());
+
+        request = ApiClient.getApiClient().create(ApiInterface.class);
+        timer = new Timer();
 
         getBannerSlider();
         getCategory();
@@ -122,11 +143,124 @@ public class HomeFragment extends Fragment {
             }
         });
 
+
         return view;
     }
 
+    private void getTimer() {
 
-    private void getTimer() {}
+        txt_minute = view.findViewById(R.id.txt_minute);
+        txt_hour = view.findViewById(R.id.txt_hour);
+        txt_second = view.findViewById(R.id.txt_second);
+
+
+        Call<TimerAmazing> callTimerAmazing = request.getTimeAmazing();
+
+        callTimerAmazing.enqueue(new Callback<TimerAmazing>() {
+            @Override
+            public void onResponse(Call<TimerAmazing> call, retrofit2.Response<TimerAmazing> response) {
+
+                String hour = response.body().getHour()+"";
+                String minute = response.body().getMin()+"";
+                String second = response.body().getSec()+"";
+
+                if (response.body().getMin()<10){
+                    txt_minute.setText("0"+response.body().getMin());
+                }else {
+                    txt_minute.setText(response.body().getMin()+"");
+                }
+
+                if (response.body().getSec()<10){
+                    txt_second.setText("0"+response.body().getSec());
+                }else {
+                    txt_second.setText(response.body().getSec()+"");
+                }
+
+                if (response.body().getHour()<10){
+                    txt_hour.setText("0"+response.body().getHour());
+                }else {
+                    txt_hour.setText(response.body().getHour()+"");
+                }
+
+
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+
+                        if (response.body().getSec() != 0){
+                            response.body().setSec(response.body().getSec() - 1 );
+                            if (response.body().getSec()<10){
+
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        txt_second.setText("0"+response.body().getSec());
+
+                                    }
+                                });
+
+                            }else {
+                                getActivity().runOnUiThread(new Runnable() {
+                                    @Override
+                                    public void run() {
+
+                                        txt_second.setText(response.body().getSec()+"");
+
+                                    }
+                                });
+
+                            }
+                        }else {
+                            response.body().setSec(59);
+                            if (response.body().getMin() != 0){
+                                response.body().setMin(response.body().getMin() - 1);
+                                if (response.body().getMin() < 10){
+
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+                                            txt_minute.setText("0"+response.body().getMin());
+                                        }
+                                    });
+
+                                }else {
+
+                                    getActivity().runOnUiThread(new Runnable() {
+                                        @Override
+                                        public void run() {
+
+                                            txt_minute.setText(response.body().getMin()+"");
+                                            txt_second.setText(response.body().getSec()+"");
+
+                                        }
+                                    });
+                                }
+                            }
+                        }
+
+
+                    }
+                },0 , 1000);
+
+
+
+                Toast.makeText(getContext(), hour + "  " + minute + "  " + second, Toast.LENGTH_SHORT).show();
+
+
+            }
+
+            @Override
+            public void onFailure(Call<TimerAmazing> call, Throwable t) {
+
+                Toast.makeText(getContext(), t.getMessage()+"", Toast.LENGTH_SHORT).show();
+
+
+            }
+        });
+
+
+    }
 
     private void getNewWatch() {
 
@@ -135,7 +269,7 @@ public class HomeFragment extends Fragment {
         recyclerView_new_watch.setLayoutManager(new LinearLayoutManager(getContext() , LinearLayoutManager.HORIZONTAL , false));
 
         FirstAmazing firstAmazing_Watch = new FirstAmazing("جدید ترین ساعت های هوشمند را مشاهده کنید"
-                ,"https://www.pngmart.com/files/6/Watch-PNG-Background-Image.png");
+                ,"https://pngriver.com/wp-content/uploads/2018/04/Download-Watch-PNG-Background-Image.png");
 
         listDetailCategoryProduct.add(new Amazing(1 , firstAmazing_Watch));
 
@@ -518,4 +652,14 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @Override
+    public void onDestroy() {
+
+        if (timer != null){
+            timer.cancel();
+            timer.purge();
+        }
+
+        super.onDestroy();
+    }
 }

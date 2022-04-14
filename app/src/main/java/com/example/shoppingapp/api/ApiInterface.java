@@ -2,6 +2,7 @@ package com.example.shoppingapp.api;
 
 import com.example.shoppingapp.model.Cart;
 import com.example.shoppingapp.model.Order;
+import com.example.shoppingapp.model.TimerAmazing;
 
 import java.util.List;
 
@@ -54,6 +55,8 @@ public interface ApiInterface {
     @GET("getOrderProduct.php")
     Call<List<Order>> getListOrderProduct(@Query("user_email") String user_email );
 
+    @GET("timer.php")
+    Call<TimerAmazing> getTimeAmazing();
 
 
 }

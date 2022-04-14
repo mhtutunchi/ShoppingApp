@@ -80,7 +80,6 @@ public class DetailCategoryActivity extends AppCompatActivity {
 
     private void getDetailNewProduct(String id) {
 
-
         recyclerView_new_product = findViewById(R.id.recyclerView_new_product);
         recyclerView_new_product.setHasFixedSize(true);
         recyclerView_new_product.setLayoutManager(new LinearLayoutManager(getApplicationContext(), LinearLayoutManager.HORIZONTAL, false));
